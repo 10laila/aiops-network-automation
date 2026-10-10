@@ -1,0 +1,12 @@
+---
+- name: Configuration du VLAN 100 sur sw2
+  hosts: sw2
+  gather_facts: false
+  tasks:
+    - name: Configurer le VLAN 100 avec le nom RH
+      cisco.ios.ios_vlans:
+        config:
+          - vlan_id: 100
+            name: RH
+            state: active
+        state: merged

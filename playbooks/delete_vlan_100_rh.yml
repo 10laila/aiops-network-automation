@@ -1,0 +1,10 @@
+---
+- name: Supprimer le VLAN 100 (RH) sur sw2
+  hosts: sw2
+  gather_facts: false
+  tasks:
+    - name: Supprimer le VLAN 100
+      cisco.ios.ios_vlans:
+        config:
+          - vlan_id: 100
+        state: deleted

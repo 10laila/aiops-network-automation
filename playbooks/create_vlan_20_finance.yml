@@ -1,0 +1,11 @@
+---
+- name: Configuration du VLAN 20 FINANCE sur les equipements Cisco IOS
+  hosts: switches
+  gather_facts: false
+  tasks:
+    - name: Configurer le VLAN 20 FINANCE
+      cisco.ios.ios_vlans:
+        config:
+          - vlan_id: 20
+            name: FINANCE
+        state: merged

@@ -1,0 +1,14 @@
+---
+- name: Afficher la liste des VLANs sur sw2
+  hosts: sw2
+  gather_facts: false
+  tasks:
+    - name: Exécuter la commande show vlan brief
+      cisco.ios.ios_command:
+        commands:
+          - show vlan brief
+      register: vlan_output
+
+    - name: Afficher le résultat des VLANs
+      ansible.builtin.debug:
+        var: vlan_output.stdout_lines

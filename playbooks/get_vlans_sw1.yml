@@ -1,0 +1,13 @@
+---
+- name: Recuperer la liste des VLANs sur sw1
+  hosts: sw1
+  gather_facts: false
+  tasks:
+    - name: Recuperer la configuration des VLANs
+      cisco.ios.ios_vlans:
+        state: gathered
+      register: vlan_facts
+
+    - name: Afficher les VLANs
+      ansible.builtin.debug:
+        var: vlan_facts.gathered

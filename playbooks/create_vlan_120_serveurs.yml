@@ -1,0 +1,26 @@
+---
+- name: Configuration du VLAN 120 et de son interface SVI
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Creer le VLAN 120
+      cisco.ios.ios_vlans:
+        config:
+          - vlan_id: 120
+            name: SERVEURS
+        state: merged
+
+    - name: Configurer l'adresse IP de l'interface Vlan120
+      cisco.ios.ios_l3_interfaces:
+        config:
+          - name: Vlan120
+            ipv4:
+              - address: 10.99.20.1/24
+        state: merged
+
+    - name: Activer l'interface Vlan120
+      cisco.ios.ios_interfaces:
+        config:
+          - name: Vlan120
+            enabled: true
+        state: merged

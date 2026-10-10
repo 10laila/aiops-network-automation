@@ -1,0 +1,4 @@
+---
+- name: Test Gitea SSH
+  hosts: all
+  tasks: []

@@ -1,0 +1,12 @@
+---
+- name: Configuration du VLAN 200 sur sw1
+  hosts: sw1
+  gather_facts: false
+  tasks:
+    - name: Creer le VLAN 200 Wi-fi
+      cisco.ios.ios_vlans:
+        config:
+          - vlan_id: 200
+            name: Wi-fi
+            state: active
+        state: merged
